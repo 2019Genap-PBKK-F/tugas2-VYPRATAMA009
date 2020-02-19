@@ -2,7 +2,7 @@ const http = require("http");
 const hostname = '10.199.14.46';
 const port = 8027;
 
-//Create HTTP server and listen on port 8020 for requests
+//Create HTTP server and listen on port 8027 for requests
 const server = http.createServer((req, res) => {
 
   //Set the response HTTP header with HTTP status and Content type
