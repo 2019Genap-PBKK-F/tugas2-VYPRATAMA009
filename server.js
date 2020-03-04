@@ -7,7 +7,7 @@ var mahasiswaController = require('./Controller/MahasiswaController')();
 
 app.get("/",function(request, response)
 {
-    response.json({"Message":"Welcome"});
+    response.json({"Message":"hello"});
 });
 app.use("/api/Mahasiswa", mahasiswaController);
 
