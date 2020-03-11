@@ -74,6 +74,7 @@ app.post('/api/mahasiswa',function(req,res){
 
 app.put('/api/mahasiswa/:id',function(req,res){
    var param = [
+    { name: 'ID', sqltype: sql.Int, value: req.params.ID },
     { name: 'NRP', sqltype: sql.Char, value: req.body.NRP },
     { name: 'Nama', sqltype: sql.VarChar, value: req.body.Nama },
     { name: 'Angkatan', sqltype: sql.Int, value: req.body.Angkatan },
