@@ -55,7 +55,9 @@ var query = function (res, query, params) {
 }
 
 
-//api untuk tabel kategori unit
+//API baru
+
+//api untuk tabel Kategori Unit
 app.get("/api/kategori", function (req, res) {
    var qr = "select id, nama as name from KategoriUnit";
    query(res, qr, null);
