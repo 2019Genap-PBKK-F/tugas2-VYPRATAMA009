@@ -157,6 +157,29 @@ app.delete("/api/aspek/:id", function(req, res)
    executeQuery(res, query, model, 1)
 })
 
+//tabel konkin
+app.get("/api/konkin/:id", function(req, res)
+{
+    var query = "SELECT a.aspek, a.komponen_aspek, mi.nama, isk.bobot,isk.capaian,isk.capaian as cap FROM aspek AS a inner JOIN MasterIndikator AS mi ON a.id=mi.id_aspek inner JOIN Indikator_SatuanKerja as isk ON isk.id_indikator_periode=mi.id where isk.id_satker='"+req.params.id+"'";
+    executeQuery(res, query, null, 0);
+});
+app.get("/api/konkin/", function(req, res)
+{
+    var query = "SELECT a.aspek, a.komponen_aspek, mi.nama, isk.bobot,isk.capaian,isk.capaian as cap FROM aspek AS a inner JOIN MasterIndikator AS mi ON a.id=mi.id_aspek inner JOIN Indikator_SatuanKerja as isk ON isk.id_indikator_periode=mi.id";
+    executeQuery(res, query, null, 0);
+});
+
+//login
+app.get('/auth/login/:email', function(req, res)
+{
+  var model = [
+    { name: 'email', sqltype: sql.VarChar, value: req.params.email }
+  ]
+  var query = 'select id, nama, email from SatuanKerja where email = @email'
+
+  executeQuery(res, query, model, 1)
+})
+
 //tabel Jenis SatKer 
 
 app.get("/api/jenis-satker/", function(req, res)
@@ -354,11 +377,23 @@ app.get("/api/satuan-kerja/", function(req, res)
   executeQuery(res, query, null, 0)
 })
 
+app.get("/api/satuan-kerja/nama", function(req, res)
+{
+    var query = "select id,nama from SatuanKerja"
+    executeQuery(res, query, null, 0);
+});
+
 app.get("/api/satuan-kerja/:id", function(req, res)
 {
-    var query = "select * from SatuanKerja where id=" + req.params.id;
+    var query = "SELECT distinct SatuanKerja.id,SatuanKerja.nama from SatuanKerja inner join Indikator_SatuanKerja on SatuanKerja.id=Indikator_SatuanKerja.id_satker"
     executeQuery(res, query, null, 0);
 })
+
+app.get("/api/Indikator-satuan-kerja-selective/:id", function(req, res)
+{
+  var query = "select * from Indikator_SatuanKerja where id_satker='"+req.params.id+"'";
+    executeQuery(res, query, null, 0);
+});
 
 app.post("/api/satuan-kerja/", function(req, res)
 {
