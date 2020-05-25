@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const sql = require('mssql')
 //const hostname = 'localhost'
-const hostname = '10.199.14.46'
+//const hostname = '10.199.14.46'
 const port = 8027;
 
 //CORS Middleware
@@ -566,7 +566,7 @@ app.get("/api/log-indikator-satker", function(req, res){
 })
 //  LISTEN
 
-app.listen(port, hostname, function () {
+app.listen(port, function () {
   var message = "Server runnning on Port: " + port;
   console.log(message);
 });
